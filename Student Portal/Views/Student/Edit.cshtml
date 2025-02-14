@@ -4,12 +4,20 @@
 @{
 }
 
-@model Student_Portal.Models.AddStudentViewModel
+@model Student_Portal.Models.Entities.Student
 
+<h1>Edit Student</h1>
 
-<h1>Add Student</h1>
-
+@if (Model is null){
+    <p>No student was found with this ID!</p>
+}
+else{
 <form method="post">
+
+    <div class="mt-3">
+        <label class="form-label">ID</label>
+        <input type="text" class="form-control" asp-for="Id" readonly />
+    </div>
 
     <div class="mt-3">
         <label class="form-label">Name</label>
@@ -27,12 +35,17 @@
     </div>
 
     <div class="mt-3">
-        <input type="checkbox" class="form-check-input" id="Subscribed" asp-for="Subscribed"/>
+        <input type="checkbox" class="form-check-input" id="Subscribed" asp-for="Subscribed" />
         <label class="form-check-label" for="Subscribed">Subscribed</label>
     </div>
 
     <div>
-        <button type="submit" class="btn btn-primary mt-3">Add</button>
+        <button type="submit" class="btn btn-primary mt-3">Save</button>
+        <button type="submit" class="btn btn-danger mt-3"
+            asp-action="Delete" 
+            asp-controller="Student">Delete</button>
+
     </div>
 
 </form>
+}
